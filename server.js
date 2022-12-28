@@ -5,13 +5,13 @@ import products from "./routes/ProductRoute.js";
 import cors from "cors";
 import users from "./routes/userRoute.js";
 import errorHandler from "./middlewares/errorHandler.js";
-import notFound from "./middlewares/notFound.js";  
+import notFound from "./middlewares/notFound.js";
 import carts from "./routes/cartRoute.js";
 import orders from "./routes/orderRoute.js";
 const app = express();
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 connectDB();
 
 app.use("/api/products", products);
