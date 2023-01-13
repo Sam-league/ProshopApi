@@ -34,7 +34,11 @@ const updateOrder = expressAsyncHandler(async (req, res, next) => {
   try {
     const { _id } = req.params;
     const data = req.body;
-    const result = await Order.findByIdAndUpdate({ _id }, data, { new: true });
+    const result = await Order.updateOne({ _id }, data);
+    if (result.modifiedCount === 1) {
+      const orders = await Order.find();
+      res.status(200).send(orders);
+    }
     res.status(200).send(result);
   } catch (error) {
     next(error);
